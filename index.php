@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <title>Classificados</title>
     </head>
 
@@ -10,9 +11,9 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-sm bg-dark">
                 <a class="navbar-brand text-white" href="#">Classificados</a>
-                <ul class="list-group list-group-horizontal">
-                    <a class="text-white" href="php/login.php"><li class="list-group-item bg-dark">Login</li></a>
-                    <a class="text-white" href="#"><li class="list-group-item bg-dark">Cadastre-se</li></a>
+                <ul class="list-group list-group-horizontal ml-auto">
+                    <a class="text-white btn" href="login.php"><li class="list-group-item bg-dark">Login</li></a>
+                    <a class="text-white btn" href="cadastro.php"><li class="list-group-item bg-dark">Cadastre-se</li></a>
                 </ul>
             </nav>
 

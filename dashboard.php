@@ -1,11 +1,12 @@
 <?php
-session_start();
+echo "aqui é o dashboard";
+// session_start();
 
-if (!isset($_SESSION['email']) or empty($_SESSION['email'])) {
-    header("Location: php/login.php");
-}
+// if (!isset($_SESSION['email']) or empty($_SESSION['email'])) {
+//     header("Location: php/login.php");
+// }
 ?>
-
+<!--
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -38,4 +39,4 @@ if (!isset($_SESSION['email']) or empty($_SESSION['email'])) {
         <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
     </body>
-</html>
+</html>-->
