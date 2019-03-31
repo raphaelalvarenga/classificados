@@ -71,9 +71,14 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
                             <input type="password" id="iptSenhaLogin" class="form-control" placeholder="Senha" name="senha">
                         </div>
 
+                        <div class="form-group text-right">
+                            <small><a href = "#">Esqueci minha senha</a></small>
+                        </div> 
+
                         <div class="form-group">
                             <input type="submit" value="Acessar" class="btn btn-primary">
                             <a href="index.php" class="btn btn-white border-dark text-dark">Retornar</a>
+                        </div>
                     </form>
                 </div>
             </div>
