@@ -4,6 +4,17 @@ session_start();
 if (!isset($_SESSION['id']) or empty($_SESSION['id'])) {
     header("Location: login.php");
 }
+
+if (isset($_POST['produto']) && !empty($_POST['produto']) && isset($_POST['preco']) && !empty($_POST['preco'])) {
+    $produto = addslashes($_POST['produto']);
+    $descricao = addslashes($_POST['descricao']);
+    $preco = addslashes($_POST['preco']);
+    $estado = addslashes($_POST['estado']);
+    $fotos = $_POST['fotos'];
+
+    mkdir("images/anuncios/1");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -25,19 +36,19 @@ if (!isset($_SESSION['id']) or empty($_SESSION['id'])) {
             </nav>
             <div class="row justify-content-center" style="margin-top: 16px">
                 <div class="col-4">
-                    <form>
+                    <form method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="iptAnunciarProduto">Produto</label>
+                            <label for="iptAnunciarProduto">Produto:</label>
                             <input id="iptAnunciarProduto" class="form-control" type="text" name="produto" placeholder="Ex.: Samsung Galaxy S7" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="iptAnunciarDescricao">Descrição</label>
+                            <label for="iptAnunciarDescricao">Descrição:</label>
                             <textarea id="iptAnunciarDescricao" name="descricao" class="form-control" placeholder="Ex.: Celular utilizado há apenas dois meses."></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label for="iptAnunciarPreco">Preço</label>
+                            <label for="iptAnunciarPreco">Preço:</label>
                             <input id="iptAnunciarPreco" class="form-control" type="text" name="preco" placeholder="R$ 1.000,00" required>
                         </div>
 
@@ -50,6 +61,11 @@ if (!isset($_SESSION['id']) or empty($_SESSION['id'])) {
                                     <input type="radio" name="estado" id="iptAnunciarUsado" autocomplete="off"> Usado
                                 </label>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="iptAnunciarFotos">Fotos:</label>
+                            <input type="file" name="fotos" id="iptAnunciarFotos">
                         </div>
 
                         <input type="submit" value="Concluir" class="btn btn-success">
