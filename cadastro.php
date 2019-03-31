@@ -65,7 +65,7 @@ if (isset($_POST['nome']) && !empty($_POST['nome']) && isset($_POST['email']) &&
                          "</div>";
                 } else if ($cadastro == "não") {
                     echo "<div class = 'row justify-content-center'>" .
-                         "<div class = 'alert alert-danger'>Este e-mail já está cadastrado em nossa plataforma! <strong><a class = 'text-danger' href = 'login.php'>Clique aqui</a></strong> para realizar login.</div>" .
+                         "<div class = 'alert alert-warning'>Este e-mail já está cadastrado em nossa plataforma! <strong><a class = 'text-warning' href = 'login.php'>Clique aqui</a></strong> para realizar login.</div>" .
                          "</div>";
                 }
 
