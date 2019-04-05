@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <title>Classificados</title>
-    </head>
-
-    <body>
+<?php require "cabecalho.php"; ?>
         <div class="container-fluid">
             <nav class="navbar navbar-expand-sm bg-dark">
                 <a class="navbar-brand text-white" href="#">Classificados</a>
@@ -27,8 +18,4 @@
                 <div class="col-sm-8"><h4>Anúncios</h4></div>
             </div>
         </div>
-        <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
-    </body>
-</html>
+<?php require "rodape.php" ?>

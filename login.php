@@ -21,16 +21,11 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
         echo "Falha na conexão: " . $erro->getMessage();
     }
 }
+
+require "cabecalho.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <title>Classificados</title>
-    </head>
+
 
     <body>
         <div class="container-fluid">
@@ -79,8 +74,4 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
-    </body>
-</html>
+<?php require "rodape.php" ?>

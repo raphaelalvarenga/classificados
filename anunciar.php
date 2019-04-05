@@ -14,18 +14,10 @@ if (isset($_POST['produto']) && !empty($_POST['produto']) && isset($_POST['preco
 
     mkdir("images/anuncios/1");
 }
-
+require "cabecalho.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <title>Classificados</title>
-    </head>
 
-    <body>
         <div class="container-fluid">
             <nav class="navbar navbar-expand-sm bg-dark">
                 <a class="navbar-brand text-white" href="#">Classificados</a>
@@ -76,8 +68,4 @@ if (isset($_POST['produto']) && !empty($_POST['produto']) && isset($_POST['preco
             
         
         </div>
-        <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
-    </body>
-</html>
+<?php require "rodape.php" ?>
