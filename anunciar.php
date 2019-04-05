@@ -38,7 +38,7 @@ if (isset($_POST['produto']) && !empty($_POST['produto']) && isset($_POST['preco
                 <div class="col-4">
                     <form method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="iptAnunciarProduto">Produto:</label>
+                            <label for="iptAnunciarProduto">Produto:</label><span style="color: red"> *</span>
                             <input id="iptAnunciarProduto" class="form-control" type="text" name="produto" placeholder="Ex.: Samsung Galaxy S7" required>
                         </div>
 
@@ -48,7 +48,7 @@ if (isset($_POST['produto']) && !empty($_POST['produto']) && isset($_POST['preco
                         </div>
 
                         <div class="form-group">
-                            <label for="iptAnunciarPreco">Preço:</label>
+                            <label for="iptAnunciarPreco">Preço:</label><span style="color: red"> *</span>
                             <input id="iptAnunciarPreco" class="form-control" type="text" name="preco" placeholder="R$ 1.000,00" required>
                         </div>
 

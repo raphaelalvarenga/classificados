@@ -6,11 +6,7 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
     $senha = md5($_POST['senha']);
     
     try {
-        $conexao = "mysql:host=localhost;dbname=classificados;charset=utf8mb4";
-        $user = "root";
-        $pass = "root";
-
-        $pdo = new PDO($conexao, $user, $pass);
+        require "conexao.php";
         
         $sql = "SELECT * FROM usuarios WHERE email = '" . $email . "' and senha = '" . $senha . "';";
 
