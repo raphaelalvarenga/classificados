@@ -11,7 +11,7 @@ require "cabecalho.php";
 
     <div class="container-fluid">
         <nav class="navbar navbar-expand-sm bg-dark">
-            <a class="navbar-brand text-white" href="#">Classificados</a>
+            <a class="navbar-brand text-white" href="dashboard.php">Classificados</a>
             <ul class="list-group list-group-horizontal ml-auto">
                 <a class="text-white" href="#"><li class="list-group-item bg-dark"><i class="fas fa-user"></i></li></a>
                 <a class="text-white" href="logout.php"><li class="list-group-item bg-dark">Sair</li></a>

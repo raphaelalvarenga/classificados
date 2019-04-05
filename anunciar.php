@@ -10,9 +10,45 @@ if (isset($_POST['produto']) && !empty($_POST['produto']) && isset($_POST['preco
     $descricao = addslashes($_POST['descricao']);
     $preco = addslashes($_POST['preco']);
     $estado = addslashes($_POST['estado']);
-    $fotos = $_POST['fotos'];
+    
 
-    mkdir("images/anuncios/1");
+
+    // Formatação da foto
+    if (isset($_FILES['fotos'])) {
+        $fotos = $_FILES['fotos'];
+        
+        // Dimensões da imagem upada
+        list($largura_original, $altura_original) = getimagesize($fotos['tmp_name']);
+
+        // Proporção
+        $ratio = $largura_original / $altura_original;
+
+        // Armazenando a imagem original
+        $imagem_original = imagecreatefrompng($fotos['tmp_name']);
+
+        // Tamanho máximo da foto redimensionada
+        $largura_final = 200;
+        $altura_final = 200;
+
+        // Configurando largura e altura final de acordo com o ratio
+        if ($largura_final / $altura_final > $ratio) {
+            $largura_final = $altura_final * $ratio;
+        } else {
+            $altura_final = $largura_final / $ratio;
+        }
+
+        // Criando nova imagem
+        $imagem_final = imagecreatetruecolor($largura_final, $altura_final);
+
+        // Inserindo os atributos na nova foto
+        imagecopyresampled($imagem_final, $imagem_original, 0, 0, 0, 0, $largura_final, $largura_original, $altura_final, $altura_original);
+
+        // Criando pasta da imagem no servidor
+        mkdir("images/anuncios/1");
+
+        // Salvando no servidor
+        imagepng($imagem_final, "images/anuncios/1/anuncio.png");
+    }
 }
 require "cabecalho.php";
 ?>
@@ -20,9 +56,9 @@ require "cabecalho.php";
 
         <div class="container-fluid">
             <nav class="navbar navbar-expand-sm bg-dark">
-                <a class="navbar-brand text-white" href="#">Classificados</a>
+                <a class="navbar-brand text-white" href="dashboard.php">Classificados</a>
                 <ul class="list-group list-group-horizontal ml-auto">
-                    <a class="text-white" href="#"><li class="list-group-item bg-dark">Minha conta</li></a>
+                    <a class="text-white" href="#"><li class="list-group-item bg-dark"><i class="fas fa-user"></i></li></a>
                     <a class="text-white" href="logout.php"><li class="list-group-item bg-dark">Sair</li></a>
                 </ul>
             </nav>
@@ -40,8 +76,8 @@ require "cabecalho.php";
                         </div>
 
                         <div class="form-group">
-                            <label for="iptAnunciarPreco">Preço:</label><span style="color: red"> *</span>
-                            <input id="iptAnunciarPreco" class="form-control" type="text" name="preco" placeholder="R$ 1.000,00" required>
+                            <label for="iptAnunciarPreco">Preço (R$):</label><span style="color: red"> *</span>
+                            <input id="iptAnunciarPreco" class="form-control" type="text" name="preco" placeholder="Ex.: 1.000,00" required>
                         </div>
 
                         <div class="form-group">
