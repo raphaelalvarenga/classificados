@@ -1,5 +1,8 @@
 <?php
 session_start();
+require "conexao.php";
+
+date_default_timezone_set("America/Sao_Paulo");
 
 if (!isset($_SESSION['id']) or empty($_SESSION['id'])) {
     header("Location: login.php");
@@ -10,7 +13,8 @@ if (isset($_POST['produto']) && !empty($_POST['produto']) && isset($_POST['preco
     $descricao = addslashes($_POST['descricao']);
     $preco = addslashes($_POST['preco']);
     $estado = addslashes($_POST['estado']);
-    
+    $data = date("Y-m-d H:i:s");
+    $id_usuario = $_SESSION['id'];
 
 
     // Formatação da foto
@@ -44,11 +48,15 @@ if (isset($_POST['produto']) && !empty($_POST['produto']) && isset($_POST['preco
         imagecopyresampled($imagem_final, $imagem_original, 0, 0, 0, 0, $largura_final, $largura_original, $altura_final, $altura_original);
 
         // Criando pasta da imagem no servidor
-        mkdir("images/anuncios/1");
+        //mkdir("images/anuncios/1");
 
         // Salvando no servidor
-        imagepng($imagem_final, "images/anuncios/1/anuncio.png");
+        //imagepng($imagem_final, "images/anuncios/1/anuncio.png");
     }
+
+    $sql = "INSERT INTO anuncios " .
+           "(id, produto, descricao, preco, estado, data, id_usuario) " .
+           "VALUES (DEFAULT, '$produto', '$descricao', '$preco', '$estado', '$data', '$id_usuario');";
 }
 require "cabecalho.php";
 ?>
@@ -62,6 +70,23 @@ require "cabecalho.php";
                     <a class="text-white" href="logout.php"><li class="list-group-item bg-dark">Sair</li></a>
                 </ul>
             </nav>
+            <?php
+                if (isset($_POST['produto']) && !empty($_POST['produto']) && isset($_POST['preco']) && !empty($_POST['preco'])) {
+                    ?>
+                    <div class="row justify-content-center" style="margin-top: 16px">
+                    <div class="col-4">
+                        <div class="alert-success" style="padding: 8px">
+                            <h4 class="text-center"><strong>Anúncio realizado com sucesso!</strong></h4>
+                            <p>Aproveite esta página para realizar outro anúncio ou <a class="text-success" href="dashboard.php"><strong>clique aqui</strong></a> para voltar à tela de anúncios.</p>
+                        </div>
+                    </div>
+                    </div>
+
+                    <?php
+                }
+                
+            ?>
+            
             <div class="row justify-content-center" style="margin-top: 16px">
                 <div class="col-4">
                     <form method="POST" enctype="multipart/form-data">
