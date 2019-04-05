@@ -48,15 +48,17 @@ if (isset($_POST['produto']) && !empty($_POST['produto']) && isset($_POST['preco
         imagecopyresampled($imagem_final, $imagem_original, 0, 0, 0, 0, $largura_final, $largura_original, $altura_final, $altura_original);
 
         // Criando pasta da imagem no servidor
-        //mkdir("images/anuncios/1");
+        mkdir("images/anuncios/1");
 
         // Salvando no servidor
-        //imagepng($imagem_final, "images/anuncios/1/anuncio.png");
+        imagepng($imagem_final, "images/anuncios/1/anuncio.png");
     }
 
     $sql = "INSERT INTO anuncios " .
            "(id, produto, descricao, preco, estado, data, id_usuario) " .
            "VALUES (DEFAULT, '$produto', '$descricao', '$preco', '$estado', '$data', '$id_usuario');";
+
+    $sql = $pdo->query($sql);
 }
 require "cabecalho.php";
 ?>
