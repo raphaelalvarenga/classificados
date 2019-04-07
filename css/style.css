@@ -1,3 +1,7 @@
 #divLoginUserPassInvalidos {
     display: none;
 }
+
+#tblDashboard td {
+    vertical-align: middle;
+}
