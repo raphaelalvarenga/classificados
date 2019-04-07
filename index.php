@@ -98,6 +98,7 @@ require "cabecalho.php";
                             
                             for ($y = 1; $y <= 3; $y++) {
                                 echo "<div class='col-4'>";
+                                    echo "<a href='#' class='text-dark'>";
                                     echo "<div class='row'>";
                                         echo "<div class='col'>";
                                             echo $anuncios[($x * $y + $i) - 1]->icone;
@@ -127,7 +128,7 @@ require "cabecalho.php";
                                             echo "<strong>Estado: </strong>" . $anuncios[($x * $y + $i) - 1]->estado;
                                         echo "</div>";
                                     echo "</div>";
-                                
+                                    echo "</a>";
                                 echo "</div>";
 
                                 if ($y == 1) {

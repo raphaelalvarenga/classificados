@@ -28,7 +28,7 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `senha` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Raphael Alvarenga do Carmo','raphaelalvarenga2@gmail.com','202cb962ac59075b964b07152d234b70'),(2,'Solange Alvarenga Santos','solangealvaresantos@gmail.com','202cb962ac59075b964b07152d234b70'),(3,'Lúcia Alvarenga Santos','luciaalvarenga2010@hotmail.com','202cb962ac59075b964b07152d234b70');
+INSERT INTO `usuarios` VALUES (1,'Raphael Alvarenga do Carmo','raphaelalvarenga2@gmail.com','202cb962ac59075b964b07152d234b70'),(2,'João da Silva','joaodasilva@gmail.com','202cb962ac59075b964b07152d234b70'),(3,'Maria das Graças','mariadasgracas@gmail.com','202cb962ac59075b964b07152d234b70'),(4,'John Lennon','johnlennon@yahoo.com','202cb962ac59075b964b07152d234b70'),(5,'Paul McCartney','paulmccartney@yahoo.com','202cb962ac59075b964b07152d234b70'),(6,'George Harrison','georgeharrison@gmail.com','202cb962ac59075b964b07152d234b70'),(7,'Ringo Starr','ringostarr@gmail.com','202cb962ac59075b964b07152d234b70'),(8,'Bruce Dickinson','brucedickinson@gmail.com','202cb962ac59075b964b07152d234b70'),(9,'Steve Harris','steveharris@hotmail.com','202cb962ac59075b964b07152d234b70'),(10,'Dave Murray','davemurray@hotmail.com','202cb962ac59075b964b07152d234b70'),(11,'Adrian Smith','adriansmith@yahoo.com','202cb962ac59075b964b07152d234b70'),(12,'Janick Gers','janickgers@yahoo.com','202cb962ac59075b964b07152d234b70'),(13,'Clive Burr','cliveburr@hotmail.com','202cb962ac59075b964b07152d234b70'),(14,'Nicko McBrain','nickomcbrain@yahoo.com','202cb962ac59075b964b07152d234b70'),(15,'Paul DiAnno','pauldianno@yahoo.com','202cb962ac59075b964b07152d234b70'),(16,'Blaze Bailey','blazebailey@yahoo.com','202cb962ac59075b964b07152d234b70'),(17,'James Hetfield','jameshetfield@gmail.com','202cb962ac59075b964b07152d234b70'),(18,'Lars Ulrich','larsulrich@hotmail.com','202cb962ac59075b964b07152d234b70'),(19,'Kirk Hammet','kirkhammet@gmail.com','202cb962ac59075b964b07152d234b70'),(20,'Cliff Burton','cliffburton@gmail.com','202cb962ac59075b964b07152d234b70'),(21,'Jason Newsted','jasonnewsted@hotmail.com','202cb962ac59075b964b07152d234b70'),(22,'Robert Trujillo','roberttrujillo@hotmail.com','202cb962ac59075b964b07152d234b70'),(23,'Michael Jackson','michaeljackson@hotmail.com','202cb962ac59075b964b07152d234b70');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-05 17:53:34
+-- Dump completed on 2019-04-07 15:52:01
