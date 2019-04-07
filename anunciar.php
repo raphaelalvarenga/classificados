@@ -16,49 +16,60 @@ if (isset($_POST['produto']) && !empty($_POST['produto']) && isset($_POST['preco
     $data = date("Y-m-d H:i:s");
     $id_usuario = $_SESSION['id'];
 
+    
+    // Verificando qual foi o último registro
+    $sql = "SELECT id FROM anuncios ORDER BY id DESC LIMIT 1;";
+    $sql = $pdo->query($sql);
 
-    // Formatação da foto
-    if (isset($_FILES['fotos'])) {
-        $fotos = $_FILES['fotos'];
-        
-        // Dimensões da imagem upada
-        list($largura_original, $altura_original) = getimagesize($fotos['tmp_name']);
+    if ($sql->rowCount() > 0) {
+        $sql = $sql->fetch();
+        $proximoId = $sql['id'] + 1;
 
-        // Proporção
-        $ratio = $largura_original / $altura_original;
 
-        // Armazenando a imagem original
-        $imagem_original = imagecreatefrompng($fotos['tmp_name']);
 
-        // Tamanho máximo da foto redimensionada
-        $largura_final = 200;
-        $altura_final = 200;
+        // Formatação da foto
+        if (isset($_FILES['fotos'])) {
+            $fotos = $_FILES['fotos'];
+            
+            // Dimensões da imagem upada
+            list($largura_original, $altura_original) = getimagesize($fotos['tmp_name']);
 
-        // Configurando largura e altura final de acordo com o ratio
-        if ($largura_final / $altura_final > $ratio) {
-            $largura_final = $altura_final * $ratio;
-        } else {
-            $altura_final = $largura_final / $ratio;
+            // Proporção
+            $ratio = $largura_original / $altura_original;
+
+            // Armazenando a imagem original
+            $imagem_original = imagecreatefrompng($fotos['tmp_name']);
+
+            // Tamanho máximo da foto redimensionada
+            $largura_final = 200;
+            $altura_final = 200;
+
+            // Configurando largura e altura final de acordo com o ratio
+            if ($largura_final / $altura_final > $ratio) {
+                $largura_final = $altura_final * $ratio;
+            } else {
+                $altura_final = $largura_final / $ratio;
+            }
+            
+            // Criando nova imagem
+            $imagem_final = imagecreatetruecolor($largura_final, $altura_final);
+
+            // Inserindo os atributos na nova foto
+            imagecopyresampled($imagem_final, $imagem_original, 0, 0, 0, 0, $largura_final, $largura_original, $altura_final, $altura_original);
+
+            // Criando pasta da imagem no servidor
+            mkdir("images/anuncios/" . $proximoId);
+
+            // Salvando no servidor
+            imagepng($imagem_final, "images/anuncios/" . $proximoId . "/anuncio.png");
         }
 
-        // Criando nova imagem
-        $imagem_final = imagecreatetruecolor($largura_final, $altura_final);
+        $sql = "INSERT INTO anuncios " .
+            "(id, produto, descricao, preco, estado, data, id_usuario) " .
+            "VALUES (DEFAULT, '$produto', '$descricao', '$preco', '$estado', '$data', '$id_usuario');";
 
-        // Inserindo os atributos na nova foto
-        imagecopyresampled($imagem_final, $imagem_original, 0, 0, 0, 0, $largura_final, $largura_original, $altura_final, $altura_original);
-
-        // Criando pasta da imagem no servidor
-        mkdir("images/anuncios/1");
-
-        // Salvando no servidor
-        imagepng($imagem_final, "images/anuncios/1/anuncio.png");
+        $sql = $pdo->query($sql);
     }
-
-    $sql = "INSERT INTO anuncios " .
-           "(id, produto, descricao, preco, estado, data, id_usuario) " .
-           "VALUES (DEFAULT, '$produto', '$descricao', '$preco', '$estado', '$data', '$id_usuario');";
-
-    $sql = $pdo->query($sql);
 }
 require "cabecalho.php";
 ?>
@@ -110,10 +121,10 @@ require "cabecalho.php";
                         <div class="form-group">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="estado" id="iptAnunciarNovo" autocomplete="off" checked> Novo
+                                    <input type="radio" name="estado" id="iptAnunciarNovo" autocomplete="off" value="novo" checked> Novo
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="estado" id="iptAnunciarUsado" autocomplete="off"> Usado
+                                    <input type="radio" name="estado" id="iptAnunciarUsado" value="usado" autocomplete="off"> Usado
                                 </label>
                             </div>
                         </div>
