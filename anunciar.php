@@ -121,10 +121,10 @@ require "cabecalho.php";
                         <div class="form-group">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="estado" id="iptAnunciarNovo" autocomplete="off" value="novo" checked> Novo
+                                    <input type="radio" name="estado" id="iptAnunciarNovo" autocomplete="off" value="Novo" checked> Novo
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="estado" id="iptAnunciarUsado" value="usado" autocomplete="off"> Usado
+                                    <input type="radio" name="estado" id="iptAnunciarUsado" value="Usado" autocomplete="off"> Usado
                                 </label>
                             </div>
                         </div>

@@ -6,6 +6,16 @@ if (!isset($_SESSION['id']) or empty($_SESSION['id'])) {
 }
 
 require "conexao.php";
+
+$sql = "SELECT * FROM usuarios WHERE id = " . $_SESSION['id'] . "';";
+$sql = $pdo->query($sql);
+
+// if ($sql->rowCount() > 0) {
+//     $usuario = $sql->fetch();
+// }
+
+
+
 require "cabecalho.php";
 ?>
 
@@ -18,6 +28,12 @@ require "cabecalho.php";
                 <a class="text-white" href="logout.php"><li class="list-group-item bg-dark">Sair</li></a>
             </ul>
         </nav>
+
+        <!--<div class="row">
+            <div class="col">
+                <p>Olá!</p>
+            </div>
+        </div>-->
 
         <div class="row" style="margin-top: 16px">
             <div class="col">
