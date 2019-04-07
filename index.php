@@ -49,39 +49,98 @@ require "cabecalho.php";
                 </div>
                 <div class="col-sm-10">
                     <h4 class="text-center">Anúncios Recentes</h4>
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>Anuncio</th>
-                                <th>Categoria</th>
-                                <th>Preço</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
+                    <?php
+                        $anuncios = array();
 
-                        <tbody>
-                            <?php
-                                // Últimos 30 anuncios
-                                $sql = "SELECT * FROM anuncios ORDER BY id DESC LIMIT 30";
+                        class Anuncio {
+                            public $id;
+                            public $produto;
+                            public $descricao;
+                            public $icone;
+                            public $preco;
+                            public $estado;
+                        }
 
-                                $sql = "SELECT a.produto, c.descricao, c.icone, a.preco, a.estado " .
+
+                        $sql = "SELECT a.id, a.produto, c.descricao, c.icone, a.preco, a.estado " .
                                        "FROM anuncios as a LEFT JOIN categorias as c " .
                                        "ON a.id_categoria = c.id " .
-                                       "ORDER BY a.id DESC " .
-                                       "LIMIT 30;";
-                                $sql = $pdo->query($sql);
-                                if ($sql->rowCount() > 0) {
-                                    foreach($sql->fetchAll() as $anuncio) {
-                                        echo "<tr>";
-                                        echo "<td><a href='#' class='text-dark'>" . $anuncio['produto'] . "</a></td>";
-                                        echo "<td>" . $anuncio['icone'] . " " . $anuncio['descricao'] . "</td>";
-                                        echo "<td>R$ " . $anuncio['preco'] . "</td>";
-                                        echo "<td>" . $anuncio['estado'] . "</td>";
-                                        echo "</tr>";
-                                    }
+                                       "ORDER BY a.id";
+                        
+                        $sql = $pdo->query($sql);
+                        if ($sql->rowCount() > 0) {
+                            foreach ($sql->fetchAll() as $anuncio) {
+                                $anuncio_tmp = new Anuncio();
+
+                                $anuncio_tmp->id = $anuncio['id'];
+                                $anuncio_tmp->produto = $anuncio['produto'];
+                                $anuncio_tmp->descricao = $anuncio['descricao'];
+                                $anuncio_tmp->icone = $anuncio['icone'];
+                                $anuncio_tmp->preco = $anuncio['preco'];
+                                $anuncio_tmp->estado = $anuncio['estado'];
+
+                                array_push($anuncios, $anuncio_tmp);
+                            }
+                        }
+                        
+
+                        /*
+                        ** O preenchimento desta tabela funciona desta forma:
+                        ** A razão de linha para linha é crescente e de 2 em 2
+                        ** A razão da coluna é decrescente onde a do meio é a metade da esquerda
+                        ** e a última é igual a zero.
+                        */
+                        $z = 0;
+                        for ($x = 1; $x <= 10; $x++) {
+                            $i = $z;
+
+                            echo "<div class='row text-center' style='padding: 32px 0'>";
+                            
+                            for ($y = 1; $y <= 3; $y++) {
+                                echo "<div class='col-4'>";
+                                    echo "<div class='row'>";
+                                        echo "<div class='col'>";
+                                            echo $anuncios[($x * $y + $i) - 1]->icone;
+                                        echo "</div>";
+                                    echo "</div>";
+
+                                    echo "<div class ='row'>";
+                                        echo "<div class='col'>";
+                                            //echo "<img src='images/anuncios/" . ($x * $y + $i) . "/anuncio.png'>";
+                                        echo "</div>";
+                                    echo "</div>";
+
+                                    echo "<div class='row'>";
+                                        echo "<div class='col'>";
+                                            echo "<strong>Produto: </strong>" . $anuncios[($x * $y + $i) - 1]->produto;
+                                        echo "</div>";
+                                    echo "</div>";
+
+                                    echo "<div class='row'>";
+                                        echo "<div class='col'>";
+                                            echo "<strong>Valor: </strong>R$ " . $anuncios[($x * $y + $i) - 1]->preco;
+                                        echo "</div>";
+                                    echo "</div>";
+
+                                    echo "<div class='row'>";
+                                        echo "<div class='col'>";
+                                            echo "<strong>Estado: </strong>" . $anuncios[($x * $y + $i) - 1]->estado;
+                                        echo "</div>";
+                                    echo "</div>";
+                                
+                                echo "</div>";
+
+                                if ($y == 1) {
+                                    $i /= 2;
+                                } else {
+                                    $i = 0;
                                 }
-                            ?>
-                        </tbody>
+                                
+                            }
+                            echo "</div>";
+                            $z += 2;
+                        }
+                    ?>
                 </div>
             </div>
         </div>
