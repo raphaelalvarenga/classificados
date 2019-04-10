@@ -37,8 +37,8 @@ require "cabecalho.php";
                     <label for="slctIndexConservacao">Conservação</label>
                     <select class="custom-select" id="slctIndexConservacao">
                         <option selected></option>
-                        <option name="Novo">Novo</option>
-                        <option name="Usado">Usado</option>
+                        <option value="Novo">Novo</option>
+                        <option value="Usado">Usado</option>
                     </select>
                     
                     <br><br>
@@ -52,7 +52,7 @@ require "cabecalho.php";
                             
                             if ($sql->rowCount() > 0) {
                                 foreach($sql->fetchAll() as $categoria) {
-                                    echo "<option name='" . $categoria['id'] . "'>" . $categoria['descricao'] . "</option>";
+                                    echo "<option value='" . $categoria['id'] . "'>" . $categoria['descricao'] . "</option>";
                                 }
                             }
                         ?>
