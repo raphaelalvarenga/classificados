@@ -33,19 +33,30 @@ require "cabecalho.php";
             <div class="row">
                 <div class="col-sm-2">
                     <h4 class="text-center">Filtros</h4>
-                    <table class="table">
+
+                    <label for="slctIndexConservacao">Conservação</label>
+                    <select class="custom-select" id="slctIndexConservacao">
+                        <option selected></option>
+                        <option name="Novo">Novo</option>
+                        <option name="Usado">Usado</option>
+                    </select>
+                    
+                    <br><br>
+
+                    <label for="slctIndexCategoria">Categoria:</label>
+                    <select class="custom-select" id="slctIndexCategoria">
+                    <option></option>
                         <?php
-                            $sql = "SELECT * FROM categorias ORDER BY descricao";
+                            $sql = "SELECT id, descricao FROM categorias ORDER BY descricao";
                             $sql = $pdo->query($sql);
+                            
                             if ($sql->rowCount() > 0) {
-                                foreach ($sql->fetchAll() as $categoria) {
-                                    echo "<tr>";
-                                    echo "<td><a class='btn btn-primary' href='index.php'>" . $categoria['descricao'] . "</a></td>";
-                                    echo "</tr>";
+                                foreach($sql->fetchAll() as $categoria) {
+                                    echo "<option name='" . $categoria['id'] . "'>" . $categoria['descricao'] . "</option>";
                                 }
                             }
                         ?>
-                    </table>
+                    </select>
                 </div>
                 <div class="col-sm-10">
                     <h4 class="text-center">Anúncios Recentes</h4>
@@ -97,7 +108,7 @@ require "cabecalho.php";
                             echo "<div class='row text-center' style='padding: 32px 0'>";
                             
                             for ($y = 1; $y <= 3; $y++) {
-                                echo "<div class='col-4'>";
+                                echo "<div class='col-sm-4'>";
                                     echo "<a href='#' class='text-dark'>";
                                     echo "<div class='row'>";
                                         echo "<div class='col'>";
